@@ -16,7 +16,7 @@ notify:
       failure: true
       change: true
       branch: [master]
-      event: [tag, pull, pull_request]
+      event: [tag, push, pull_request]
     template: |
       {{#success build.status}}
         {{ build.author }} successfully pushed to {{ build.branch}}
