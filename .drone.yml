@@ -6,7 +6,7 @@ build:
   commands:
     - go test
 
-publish:
-  coverage:
-    when:
-      branch: master
+# publish:
+#   coverage:
+#     when:
+#       branch: master
