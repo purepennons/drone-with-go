@@ -6,7 +6,20 @@ build:
   commands:
     - go test
 
-# publish:
-#   coverage:
-#     when:
-#       branch: master
+notify:
+  slack:
+    webhook_url: https://hooks.slack.com/services/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
+    channel: general
+    username: drone
+    when:
+      success: true
+      failure: true
+      change: true
+      branch: [master]
+      event: [tag, pull, pull_request]
+    template: |
+      {{#success build.status}}
+        {{ build.author }} successfully pushed to {{ build.branch}}
+      {{else}}
+        {{ build.author }} broke the build. Hang your head in shame.
+      {{/success}}
