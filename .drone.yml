@@ -15,8 +15,6 @@ matrix:
   #   - DJ2Station 
 
 pipeline:
-  volumes:
-    - /var/run/docker.sock:/var/run/docker.sock
   restore-cache:
     image: drillster/drone-volume-cache
     restore: true
@@ -41,6 +39,8 @@ pipeline:
   build_qpkg:
     image: docker:1.2.0
     privileged: true
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
     commands:
       - echo $PWD
       - echo "echo hello world" > a.sh
