@@ -15,6 +15,8 @@ matrix:
   #   - DJ2Station 
 
 pipeline:
+  volumes:
+    - /var/run/docker.sock:/var/run/docker.sock
   restore-cache:
     image: drillster/drone-volume-cache
     restore: true
@@ -37,16 +39,15 @@ pipeline:
       - cat 123.txt
 
   build_qpkg:
-      image: docker:1.2.0
-      privileged: true
-      volumes:
-        - /var/run/docker.sock:/var/run/docker.sock
-      commands:
-        - echo $PWD
-        - echo "echo hello world" > a.sh
-        - touch a.txt
-        - docker run --rm qeekdev/golang:1.7.1-ubuntu ls -al
-        - docker run --rm -v "$PWD:/src" -w "/src" qeekdev/golang:1.7.1-ubuntu bash -c "ls -al"
+    image: docker:1.2.0
+    privileged: true
+    commands:
+      - echo $PWD
+      - echo "echo hello world" > a.sh
+      - touch a.txt
+      - ls -al
+      - docker run --rm qeekdev/golang:1.7.1-ubuntu ls -al
+      - docker run --rm -v "$PWD:/src" -w "/src" qeekdev/golang:1.7.1-ubuntu bash -c "ls -al"
   # clone:
   #   image: plugins/git
   #   recursive: true
