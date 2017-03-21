@@ -50,7 +50,7 @@ pipeline:
   #     - docker run --rm -v $PWD:/drone/workspace/qpkg -w "/drone/workspace/qpkg" qeekdev/golang:1.7.1-ubuntu ls
 
   dind:
-    image: jpetazzo/dind
+    image: docker:1.13
     privileged: true
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
