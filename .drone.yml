@@ -47,7 +47,7 @@ pipeline:
       - touch a.txt
       - ls -al
       - docker run --rm qeekdev/golang:1.7.1-ubuntu ls -al
-      - docker run --rm -v "$PWD:/src" -w "/src" qeekdev/golang:1.7.1-ubuntu ls /
+      - docker run --rm -v "$PWD:/src" -w "/src" qeekdev/golang:1.7.1-ubuntu ls /drone/workspace/src/github.com/purepennons/drone-with-go
   # clone:
   #   image: plugins/git
   #   recursive: true
