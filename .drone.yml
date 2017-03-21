@@ -52,6 +52,8 @@ pipeline:
   dind:
     image: jpetazzo/dind
     privileged: true
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
     commands:
     - docker ps
 
