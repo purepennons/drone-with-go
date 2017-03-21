@@ -43,7 +43,7 @@ pipeline:
       commands:
         - echo $PWD
         - echo "echo hello world" > a.sh
-        - docker run --rm -v $PWD:/src -w /src qeekdev/golang:1.7.1-ubuntu bash -c "bash a.sh"
+        - docker run --rm -v $PWD:/src -w /src qeekdev/golang:1.7.1-ubuntu bash -c "sh a.sh"
   # clone:
   #   image: plugins/git
   #   recursive: true
