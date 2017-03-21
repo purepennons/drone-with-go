@@ -26,6 +26,15 @@ pipeline:
       - ./docker
       - ./test
       - ./tools
+      - .
+
+  test:
+    image: golang
+    commands:
+      - ls -al
+      - touch 123.txt
+      - echo "GG" >> 123.txt
+      - cat 123.txt
 
   # clone:
   #   image: plugins/git
