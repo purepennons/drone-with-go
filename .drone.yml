@@ -47,7 +47,7 @@ pipeline:
       - touch a.txt
       - ls -al
       - docker run --rm qeekdev/golang:1.7.1-ubuntu ls -al
-      - docker run --name qpkg -v $PWD:/drone/workspace/qpkg -w "/drone/workspace/qpkg" qeekdev/golang:1.7.1-ubuntu pwd
+      - docker run --name qpkg -v $PWD:/drone/workspace/qpkg -w "/drone/workspace/qpkg" qeekdev/golang:1.7.1-ubuntu ls
   # clone:
   #   image: plugins/git
   #   recursive: true
