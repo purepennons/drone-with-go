@@ -36,18 +36,26 @@ pipeline:
       - echo "GG" >> 123.txt
       - cat 123.txt
 
-  build_qpkg:
-    image: docker:1.2.0
+  # build_qpkg:
+  #   image: docker:1.2.0
+  #   privileged: true
+  #   volumes:
+  #     - /var/run/docker.sock:/var/run/docker.sock
+  #   commands:
+  #     - echo $PWD
+  #     - echo "echo hello world" > a.sh
+  #     - touch a.txt
+  #     - ls -al
+  #     - docker run --rm qeekdev/golang:1.7.1-ubuntu ls -al
+  #     - docker run --rm -v $PWD:/drone/workspace/qpkg -w "/drone/workspace/qpkg" qeekdev/golang:1.7.1-ubuntu ls
+
+  dind:
+    image: jpetazzo/dind
     privileged: true
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
     commands:
-      - echo $PWD
-      - echo "echo hello world" > a.sh
-      - touch a.txt
-      - ls -al
-      - docker run --rm qeekdev/golang:1.7.1-ubuntu ls -al
-      - docker run --rm -v $PWD:/drone/workspace/qpkg -w "/drone/workspace/qpkg" qeekdev/golang:1.7.1-ubuntu ls
+    - docker ps
+
+
   # clone:
   #   image: plugins/git
   #   recursive: true
