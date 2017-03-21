@@ -1,25 +1,80 @@
-build:
-  image: golang:1.5
-  environment:
-    - GO15VENDOREXPERIMENT=1
-    - CGO_ENABLED=0
-  commands:
-    - go test
+workspace:
+  base: /drone/workspace
+  path: src/github.com/${DRONE_REPO_OWNER}/${DRONE_REPO_NAME}
 
-notify:
-  slack:
-    webhook_url: https://hooks.slack.com/services/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
-    channel: general
-    username: drone
-    when:
-      success: true
-      failure: true
-      change: true
-      branch: [master]
-      event: [tag, push, pull_request]
-    template: |
-      {{#success build.status}}
-        {{ build.author }} successfully pushed to {{ build.branch}}
-      {{else}}
-        {{ build.author }} broke the build. Hang your head in shame.
-      {{/success}}
+matrix:    
+  ROOT_PATH:
+    - /drone/src
+  DJ2_FOLDER:
+    - ./QPKG/QDK/DJ2
+
+  # APP_NAME:
+  #   - dj2-chat
+  #   - dj2-watchers
+  #   - dj2-schedule-daemon
+  #   - DJ2Station 
+
+pipeline:
+  restore-cache:
+    image: drillster/drone-volume-cache
+    restore: true
+    volumes:
+      - /share/CACHEDEV1_DATA/Container/container-station-data/tmp/drone:/cache
+    mount:
+      - ./QPKG/tools
+      - ./QPKG/QDK/bin
+      - ./docker
+      - ./test
+      - ./tools
+
+  # clone:
+  #   image: plugins/git
+  #   recursive: true
+  #   tags: true
+  #   submodule_update_remote: true
+  #   # prevent clone error from private submodules
+  #   submodule_override:
+  #     - dj2-chat: https://github.com/qeek-dev/dj2-chat.git
+  #     - dj2-watchers: https://github.com/qeek-dev/dj2-watchers.git
+  #     - dj2-schedule-daemon: https://github.com/qeek-dev/dj2-schedule-daemon.git
+  #     - DJ2Station: https://github.com/qeek-dev/DJ2Station.git
+  #   # commands:
+  #   #   - git submodule update --init --recursive --remote -- .
+    
+  # build_qpkg:
+  #   image: docker:1.2.0
+  #   volumes:
+  #     - /var/run/docker.sock:/var/run/docker.sock
+  #   commands:
+  #     - docker run --rm -v $PWD:/src -w /src qeekdev/golang:1.7.1-ubuntu bash -c "pwd && ls && bash build_qpkg_builder.sh x86_64 build 0.9.1 ."
+
+    # build_api_server:
+    #   image: qeekdev/golang:1.7.1-ubuntu
+    #   commands:
+    #     - echo === build $$APP_NAME... start ===
+    #     # over write the GOPATH
+    #     - echo "over write the GOPATH"
+    #     - export GOPATH=$PWD/$$DJ2_FOLDER
+    #     - echo $GOPATH
+    #     # entery the dj2-chat source code
+    #     - cd $$DJ2_FOLDER/src/$$APP_NAME
+    #     # clone the specific submodule
+    #     - git submodule update --init -- .
+    #     # install go dependenicse
+    #     - glide update
+    #     - glide install
+    #     # build the binary
+    #     - go build -o $$APP_NAME .
+    #     - echo === build $$APP_NAME... end ===
+
+  rebuild-cache:
+    image: drillster/drone-volume-cache
+    rebuild: true
+    volumes:
+      - /share/CACHEDEV1_DATA/Container/container-station-data/tmp/drone:/cache
+    mount:
+      - ./QPKG/tools
+      - ./QPKG/QDK/bin
+      - ./docker
+      - ./test
+      - ./tools
