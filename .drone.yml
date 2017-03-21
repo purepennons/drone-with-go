@@ -41,7 +41,8 @@ pipeline:
       volumes:
         - /var/run/docker.sock:/var/run/docker.sock
       commands:
-        - docker run --rm -v $PWD:/src -w /src qeekdev/golang:1.7.1-ubuntu bash -c "ls"
+        - echo $PWD
+        # - docker run --rm -v $PWD:/src -w /src qeekdev/golang:1.7.1-ubuntu bash -c "ls"
   # clone:
   #   image: plugins/git
   #   recursive: true
