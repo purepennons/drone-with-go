@@ -26,7 +26,7 @@ matrix:
 
 services:
   docker: 
-    image: docker:latest 
+    image: docker:1.8-dind
     privileged: true 
     command: [ "--tls=false", "-H", "0.0.0.0:6666" ]
 
