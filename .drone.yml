@@ -28,7 +28,7 @@ services:
   docker: 
     image: docker:latest 
     privileged: true 
-    command: [ "--tls=false", "disable_cache=true", "-H", "0.0.0.0:6666" ]
+    command: [ "--tls=false", "-H", "0.0.0.0:6666" ]
 
 pipeline:
   # restore-cache:
