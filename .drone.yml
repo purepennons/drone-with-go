@@ -55,6 +55,8 @@ pipeline:
       - echo DJ2_PATH=${DJ2_PATH}
       - echo DJ2_SRC_PATH=${DJ2_SRC_PATH}
       - echo APPS_BUILDED_TARGET=${APPS_BUILDED_TARGET}
+      - echo ${AAA}
+      - echo $AAA
 
   # build_qpkg:
   #   image: docker:1.2.0
