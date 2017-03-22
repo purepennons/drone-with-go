@@ -44,7 +44,7 @@ pipeline:
     commands:
       # - docker-compose --file apps_test_compose.yml up 
       - docker ps
-      - docker run qeekdev/golang:1.7.1-ubuntu ls ${ROOT_PATH}
+      - docker run qeekdev/golang:1.7.1-ubuntu ls ${REPO_PATH}
 
   
   test2:
