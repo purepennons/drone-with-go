@@ -46,6 +46,8 @@ pipeline:
       - echo ${DRONE_REPO_LINK##https://}
       - echo ${DRONE_REMOTE_URL}
       - echo ${DRONE_REPO_SCM}
+      - echo ${REPO_PATH}
+      - echo ${ROOT_PATH}
 
   # build_qpkg:
   #   image: docker:1.2.0
