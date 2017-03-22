@@ -38,11 +38,13 @@ pipeline:
   #     - ./123.txt
 
   test:
-    image: michalpodeszwa/docker-compose:latest
+    image: docker:1.2.0
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
     commands:
-      - docker-compose --file apps_test_compose.yml up 
+      # - docker-compose --file apps_test_compose.yml up 
+      - docker ps
+      - docker run -v "./:/dj2/src" qeekdev/golang:1.7.1-ubuntu ls /dj2/src
 
   
   test2:
