@@ -40,7 +40,7 @@ pipeline:
     image: golang
     commands:
       - ls -al
-      - echo ${DRONE_REPO_LINK}
+      - echo ${DRONE_REPO_LINK##https://}
       - echo ${DRONE_REMOTE_URL}
       - echo ${DRONE_REPO_SCM}
 
