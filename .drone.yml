@@ -10,8 +10,8 @@ matrix:
     - /drone/workspace/src
   REPO_PATH:
     - ${ROOT_PATH}/${DRONE_REPO_LINK##https://}
-  # DJ2_PATH:
-  #   - ${REPO_PATH}/QPKG/QDK/DJ2
+  DJ2_PATH:
+    - ${REPO_PATH}/QPKG/QDK/DJ2
   # DJ2_SRC_PATH:
   #   - ${DJ2_PATH}/src
   # APPS_BUILDED_TARGET:
@@ -51,7 +51,7 @@ pipeline:
       - ls -al
       - echo PWD=$PWD
       - echo ROOT_PATH=${ROOT_PATH}
-      - echo REPO_PATH${REPO_PATH}
+      - echo REPO_PATH=${REPO_PATH}
       - echo DJ2_PATH=${DJ2_PATH}
       - echo DJ2_SRC_PATH=${DJ2_SRC_PATH}
       - echo APPS_BUILDED_TARGET=${APPS_BUILDED_TARGET}
