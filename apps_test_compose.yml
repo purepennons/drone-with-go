@@ -4,4 +4,4 @@ services:
     image: qeekdev/golang:1.7.1-ubuntu
     volumes:
       - "./:/app/src"
-    command: ls /app/src
+    command: touch /app/src/a.txt && ls /app/src
