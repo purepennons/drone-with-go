@@ -3,12 +3,19 @@ workspace:
   path: src/${DRONE_REPO_LINK##https://}
 
 matrix:    
+  CPU_ARCH:
+    - x86_64
+    # - x86
   ROOT_PATH:
     - /drone/workspace/src
   REPO_PATH:
     - ${ROOT_PATH}/${DRONE_REPO_LINK##https://}
-  DJ2_FOLDER:
-    - ./QPKG/QDK/DJ2
+  DJ2_PATH:
+    - ${REPO_PATH}/QPKG/QDK/DJ2
+  DJ2_SRC_PATH:
+    - ${DJ2_SRC_PATH}/src
+  APPS_BUILDED_TARGET:
+    - ${DJ2_PATHDJ}/${CPU_ARCH}
 
   # APP_NAME:
   #   - dj2-chat
@@ -42,12 +49,12 @@ pipeline:
     image: golang
     commands:
       - ls -al
-      - echo $PWD
-      - echo ${DRONE_REPO_LINK##https://}
-      - echo ${DRONE_REMOTE_URL}
-      - echo ${DRONE_REPO_SCM}
-      - echo ${REPO_PATH}
-      - echo ${ROOT_PATH}
+      - echo PWD=$PWD
+      - echo ROOT_PATH=${ROOT_PATH}
+      - echo REPO_PATH${REPO_PATH}
+      - echo DJ2_PATH=${DJ2_PATH}
+      - echo DJ2_SRC_PATH=${DJ2_SRC_PATH}
+      - echo APPS_BUILDED_TARGET=${APPS_BUILDED_TARGET}
 
   # build_qpkg:
   #   image: docker:1.2.0
