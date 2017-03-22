@@ -3,9 +3,9 @@ workspace:
   path: src/${DRONE_REPO_LINK##https://}
 
 matrix:    
-  CPU_ARCH:
-    - x86_64
-    # - x86
+  # CPU_ARCH:
+  #   - x86_64
+  #   # - x86
   ROOT_PATH:
     - /drone/workspace/src
   REPO_PATH:
