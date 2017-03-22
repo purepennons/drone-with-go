@@ -13,9 +13,9 @@ matrix:
   DJ2_PATH:
     - ${REPO_PATH}/QPKG/QDK/DJ2
   DJ2_SRC_PATH:
-    - ${DJ2_SRC_PATH}/src
+    - ${DJ2_PATH}/src
   APPS_BUILDED_TARGET:
-    - ${DJ2_PATHDJ}/${CPU_ARCH}
+    - ${DJ2_PATH}/${CPU_ARCH}
 
   # APP_NAME:
   #   - dj2-chat
