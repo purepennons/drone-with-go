@@ -15,18 +15,18 @@ matrix:
   #   - DJ2Station 
 
 pipeline:
-  restore-cache:
-    image: drillster/drone-volume-cache
-    restore: true
-    volumes:
-      - /share/CACHEDEV1_DATA/Container/container-station-data/tmp/drone:/cache
-    mount:
-      - ./QPKG/tools
-      - ./QPKG/QDK/bin
-      - ./docker
-      - ./test
-      - ./tools
-      - ./123.txt
+  # restore-cache:
+  #   image: drillster/drone-volume-cache
+  #   restore: true
+  #   volumes:
+  #     - /share/CACHEDEV1_DATA/Container/container-station-data/tmp/drone:/cache
+  #   mount:
+  #     - ./QPKG/tools
+  #     - ./QPKG/QDK/bin
+  #     - ./docker
+  #     - ./test
+  #     - ./tools
+  #     - ./123.txt
 
   test:
     image: golang
@@ -35,6 +35,11 @@ pipeline:
       - touch 123.txt
       - echo "GG" >> 123.txt
       - cat 123.txt
+  
+  test2:
+    image: golang
+    commands:
+      - ls -al
 
   # build_qpkg:
   #   image: docker:1.2.0
@@ -49,13 +54,13 @@ pipeline:
   #     - docker run --rm qeekdev/golang:1.7.1-ubuntu ls -al
   #     - docker run --rm -v $PWD:/drone/workspace/qpkg -w "/drone/workspace/qpkg" qeekdev/golang:1.7.1-ubuntu ls
 
-  dind:
-    image: docker:1.13
-    privileged: true
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
-    commands:
-    - docker ps
+  # dind:
+  #   image: docker:1.13
+  #   privileged: true
+  #   volumes:
+  #     - /var/run/docker.sock:/var/run/docker.sock
+  #   commands:
+  #   - docker ps
 
 
   # clone:
@@ -98,17 +103,17 @@ pipeline:
     #     - go build -o $$APP_NAME .
     #     - echo === build $$APP_NAME... end ===
 
-  rebuild-cache:
-    image: drillster/drone-volume-cache
-    rebuild: true
-    volumes:
-      - /share/CACHEDEV1_DATA/Container/container-station-data/tmp/drone:/cache
-    mount:
-      - ./QPKG/tools
-      - ./QPKG/QDK/bin
-      - ./docker
-      - ./test
-      - ./tools
-      - ./123.txt
+  # rebuild-cache:
+  #   image: drillster/drone-volume-cache
+  #   rebuild: true
+  #   volumes:
+  #     - /share/CACHEDEV1_DATA/Container/container-station-data/tmp/drone:/cache
+  #   mount:
+  #     - ./QPKG/tools
+  #     - ./QPKG/QDK/bin
+  #     - ./docker
+  #     - ./test
+  #     - ./tools
+  #     - ./123.txt
 
 
