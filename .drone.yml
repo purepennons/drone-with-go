@@ -23,6 +23,13 @@ matrix:
   #   - dj2-schedule-daemon
   #   - DJ2Station 
 
+
+services:
+  docker: 
+    image: docker:latest 
+    privileged: true 
+    command: [ "--storage-driver=vfs", "--tls=false", "disable_cache=true", "-H", "0.0.0.0:6666" ]
+
 pipeline:
   # restore-cache:
   #   image: drillster/drone-volume-cache
@@ -38,13 +45,13 @@ pipeline:
   #     - ./123.txt
 
   test:
-    image: docker:1.2.0
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
+    image: docker:latest
+    environment:
+      - DOCKER_HOST=tcp://127.0.0.1:6666
     commands:
       # - docker-compose --file apps_test_compose.yml up 
       - docker ps
-      - docker run qeekdev/golang:1.7.1-ubuntu ls ${REPO_PATH}
+      # - docker run qeekdev/golang:1.7.1-ubuntu ls ${REPO_PATH}
 
   
   test2:
