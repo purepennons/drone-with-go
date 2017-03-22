@@ -1,0 +1,8 @@
+version: 'v2'
+services:
+  test:
+    image: qeekdev/golang:1.7.1-ubuntu
+    volumes:
+      - "./:/app/src"
+    commands:
+      - ls -al
