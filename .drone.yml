@@ -40,6 +40,9 @@ pipeline:
     image: golang
     commands:
       - ls -al
+      - echo ${DRONE_REPO_LINK}
+      - echo ${DRONE_REMOTE_URL}
+      - echo ${DRONE_REPO_SCM}
 
   # build_qpkg:
   #   image: docker:1.2.0
