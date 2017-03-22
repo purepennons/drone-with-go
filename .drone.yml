@@ -4,9 +4,9 @@ workspace:
 
 matrix:    
   ROOT_PATH:
-    - /drone/src
+    - /drone/workspace/src
   REPO_PATH:
-    - src/${DRONE_REPO_LINK##https://}
+    - /drone/workspace/src/${DRONE_REPO_LINK##https://}
   DJ2_FOLDER:
     - ./QPKG/QDK/DJ2
 
