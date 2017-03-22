@@ -10,12 +10,12 @@ matrix:
     - /drone/workspace/src
   REPO_PATH:
     - ${ROOT_PATH}/${DRONE_REPO_LINK##https://}
-  DJ2_PATH:
-    - ${REPO_PATH}/QPKG/QDK/DJ2
-  DJ2_SRC_PATH:
-    - ${DJ2_PATH}/src
-  APPS_BUILDED_TARGET:
-    - ${DJ2_PATH}/${CPU_ARCH}
+  # DJ2_PATH:
+  #   - ${REPO_PATH}/QPKG/QDK/DJ2
+  # DJ2_SRC_PATH:
+  #   - ${DJ2_PATH}/src
+  # APPS_BUILDED_TARGET:
+  #   - ${DJ2_PATH}/${CPU_ARCH}
 
   # APP_NAME:
   #   - dj2-chat
