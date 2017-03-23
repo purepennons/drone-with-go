@@ -45,8 +45,7 @@ pipeline:
   #     - ./123.txt
 
   test:
-    image: mesosphere/mesos-slave-dind:0.3.0_mesos-1.0.1_docker-1.10.3_ubuntu-14.04.5
-    privileged: true 
+    image: mesosphere/mesos-slave-dind:0.3.0_mesos-1.0.1_docker-1.10.3_ubuntu-14.04.5 
     # environment:
       - DOCKER_HOST=tcp://127.0.0.1:6666
     commands:
