@@ -44,6 +44,7 @@ pipeline:
   #     - ./tools
   #     - ./123.txt
 
+
   test:
     image: docker:1.12
     # privileged: true 
