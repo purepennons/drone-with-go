@@ -25,10 +25,10 @@ matrix:
 
 
 services:
-  docker: 
-    image: mesosphere/mesos-slave-dind:0.3.0_mesos-1.0.1_docker-1.10.3_ubuntu-14.04.5
-    privileged: true 
-    command: [ "--tls=false", "-H", "0.0.0.0:6666" ]
+  docker:
+    image: docker:1.12-dind
+    privileged: true
+    command: [ "--storage-driver=vfs", "--tls=false", "-H=0.0.0.0:6789" ]
 
 pipeline:
   # restore-cache:
@@ -45,10 +45,10 @@ pipeline:
   #     - ./123.txt
 
   test:
-    image: mesosphere/mesos-slave-dind:0.3.0_mesos-1.0.1_docker-1.10.3_ubuntu-14.04.5
+    image: docker:1.12
     # privileged: true 
     environment:
-      - DOCKER_HOST=tcp://127.0.0.1:6666
+      - DOCKER_HOST=tcp://127.0.0.1:6789
     commands:
       # - docker-compose --file apps_test_compose.yml up 
       - docker ps
