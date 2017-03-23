@@ -24,11 +24,11 @@ matrix:
   #   - DJ2Station 
 
 
-# services:
-#   docker: 
-#     image: mesosphere/mesos-slave-dind:0.3.0_mesos-1.0.1_docker-1.10.3_ubuntu-14.04.5
-#     privileged: true 
-#     command: [ "--tls=false", "-H", "0.0.0.0:6666" ]
+services:
+  docker: 
+    image: mesosphere/mesos-slave-dind:0.3.0_mesos-1.0.1_docker-1.10.3_ubuntu-14.04.5
+    privileged: true 
+    command: [ "--tls=false", "-H", "0.0.0.0:6666" ]
 
 pipeline:
   # restore-cache:
@@ -48,7 +48,7 @@ pipeline:
     image: mesosphere/mesos-slave-dind:0.3.0_mesos-1.0.1_docker-1.10.3_ubuntu-14.04.5
     privileged: true 
     # environment:
-    #   - DOCKER_HOST=tcp://127.0.0.1:6666
+      - DOCKER_HOST=tcp://127.0.0.1:6666
     commands:
       # - docker-compose --file apps_test_compose.yml up 
       - docker ps
